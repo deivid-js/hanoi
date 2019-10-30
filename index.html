@@ -11,6 +11,15 @@
 <body>
     <div id="loading"><span>Processando...</span></div>
 
+    <div id="opcoes">
+        <div>
+            Movimento atual: <span id="movimento-atual"></span>
+            <br>
+            Status: <strong id="status">PARADO</strong>
+        </div>
+        <button id="parar">Parar execução</button>
+    </div>
+
     <div id="container">
         <div id="container-movimentos">
             <h4 id="titulo">Torre de Hanoi</h4>
@@ -62,6 +71,8 @@
                 <div>T3</div>
             </div>
         </div>
+
+        <input type="hidden" id="processando" />
     </div>
     
     <script src="src/Torre.js"></script>

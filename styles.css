@@ -221,3 +221,33 @@ button {
 .disco[n='8'] { width: 30%; }
 .disco[n='9'] { width: 20%; }
 .disco[n='10'] { width: 10%; }
+
+#opcoes {
+    width: 300px;
+    z-index: 5;
+    padding: 15px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    opacity: .6;
+    background: rgba(0, 0, 0, .1);
+    transition: 200ms;
+    border-radius: 3px;
+}
+
+#opcoes:hover {
+    opacity: 1;
+}
+
+#opcoes div {
+    padding: 5px 0;
+}
+
+.destacado {
+    background: red !important;
+    font-weight: bold;
+}
+
+#parar {
+    margin-top: 5px;
+}

@@ -77,16 +77,33 @@ const Torre = function() {
     }
 
     this.renderMove = function(index, me) {
-        if (index >= me.total || me.stop) return;
+        if (index >= me.total || me.stop) {
+            byId('status').innerHTML = 'SOLUÇÃO PROCESSADA';
+
+            me.stop = false;
+
+            byId('processando').value = 'f';
+
+            return;
+        }
 
         return new Promise((resolve, reject) => {
             setTimeout(() => resolve(me.movimentos[index]), me.time);
         }).then(res => {
+            window.location.hash = `#mov-${index}`;
+
             const { id } = me.getDisco(res.disco);
             const disco = byId(id);
             const dest = byId(`discos-t${res.destino + 1}`);
 
             dest.innerHTML = disco.outerHTML + dest.innerHTML;
+
+            byId('movimento-atual').innerHTML = index + 1;
+            byId(`mov-${index}`).classList.add('destacado');
+
+            if (index > 0) {
+                byId(`mov-${index - 1}`).classList.remove('destacado');
+            }
 
             disco.remove();
 

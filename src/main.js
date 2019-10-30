@@ -1,4 +1,5 @@
 const torre = new Torre;
+let iniciado = false;
 
 (function() {
     setTimeout(() => byId('loading').style.display = 'none', 250);
@@ -7,9 +8,19 @@ const torre = new Torre;
 
     byId('processar')
         .addEventListener('click', () => {
+            if (byId('processando').value  === 't') {
+                loadAlert('Uma solução já está sendo processada!');
+
+                return;
+            }
+
             const numeroDiscos = byId('numero-discos').value;
 
             if (numeroDiscos > 2 && numeroDiscos <= 10) {
+                iniciado = false;
+
+                byId('status').innerHTML = 'PARADO';
+
                 loading(
                     () => {
                         clear();
@@ -23,6 +34,15 @@ const torre = new Torre;
 
     byId('iniciar')
         .addEventListener('click', () => {
+            if (iniciado) {
+                loadAlert('A solução já foi iniciada');
+                
+                return;
+            }
+
+            byId('processando').value = 't';
+            byId('status').innerHTML = 'PROCESSANDO SOLUÇÃO';
+
             const time = parseInt(byId('timeout').value);
 
             if (time > 0) {
@@ -30,6 +50,17 @@ const torre = new Torre;
             }
 
             torre.start();
+
+            iniciado = true;
+        });
+
+    byId('parar')
+        .addEventListener('click', () => {
+            if (byId('processando').value === 't') {
+                torre.stop = true;
+            } else {
+                loadAlert('Não');
+            }
         });
 })();
 
@@ -46,7 +77,7 @@ function execute(num) {
 
 function render(movimento, index) {
     byId('movimentos').innerHTML += `
-        <div class="movimento-item">
+        <div class="movimento-item" id="mov-${index}">
             <div>${index + 1}</div>
             <div>${movimento.disco}</div>
             <div>${torreFromNumero(movimento.origem)}</div>
@@ -81,6 +112,7 @@ function loadAlert(mensagem) {
 
 function clear() {
     byId('total').innerHTML = '0';
+    byId('movimento-atual').innerHTML = '0';
     byId('minimos').innerHTML = '0';
     byId('movimentos').innerHTML = null;
     byId('discos-t1').innerHTML = null;
