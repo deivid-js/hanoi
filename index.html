@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Torre de Hanoi</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loading"><span>Processando...</span></div>
+
+    <div id="container">
+        <div id="container-movimentos">
+            <h4 id="titulo">Torre de Hanoi</h4>
+            
+            <div id="container-inputs">
+                <div>
+                    <input min="3" max="10" id="numero-discos" type="number" placeholder="Número de discos" />
+                </div>
+                <div>
+                    <input min="100" id="timeout" type="number" placeholder="Timeout" value="1000" />
+                </div>
+                <button id="processar">Buscar Solução</button>
+                <button id="iniciar">Iniciar</button>
+            </div>
+
+            <div id="movimentos-titulo">Solução</div>
+            <div id="movimentos-header">
+                <div>#</div>
+                <div>Disco</div>
+                <div>Origem</div>
+                <div>Destino</div>
+            </div>
+
+            <div id="movimentos"></div>
+
+            <div class="base-container">
+                Movimentos mínimos: <span id="minimos"></span>
+            </div>
+            <div class="base-container">
+                Movimentos processados: <span id="total"></span>
+            </div>
+        </div>
+
+        <div id="container-torres">
+            <div id="torres">
+                <div id="t1" class="torre"></div>
+                <div id="t2" class="torre"></div>
+                <div id="t3" class="torre"></div>
+
+                <div class="discos">
+                    <div id="discos-t1"></div>
+                    <div id="discos-t2"></div>
+                    <div id="discos-t3"></div>
+                </div>
+            </div>
+            <div id="base-torres">
+                <div>T1</div>
+                <div>T2</div>
+                <div>T3</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="src/Torre.js"></script>
+    <script src="src/Hanoi.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>
