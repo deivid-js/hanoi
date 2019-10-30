@@ -77,11 +77,7 @@ const Torre = function() {
     }
 
     this.renderMove = function(index, me) {
-        if (index >= me.total || me.stop) {
-            byId('processar').setAttribute('');
-
-            return;
-        }
+        if (index >= me.total || me.stop) return;
 
         return new Promise((resolve, reject) => {
             setTimeout(() => resolve(me.movimentos[index]), me.time);

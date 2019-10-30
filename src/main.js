@@ -23,6 +23,12 @@ const torre = new Torre;
 
     byId('iniciar')
         .addEventListener('click', () => {
+            const time = parseInt(byId('timeout').value);
+
+            if (time > 0) {
+                torre.setTime(time);
+            }
+
             torre.start();
         });
 })();
@@ -31,12 +37,6 @@ function execute(num) {
     const movimentos = new Hanoi(num).handle();
 
     torre.init({num, movimentos});
-
-    const time = parseInt(byId('timeout').value);
-
-    if (time > 0) {
-        torre.setTime(time);
-    }
     
     byId('total').innerHTML = movimentos.length;
     byId('minimos').innerHTML = Math.pow(2, num) - 1;
